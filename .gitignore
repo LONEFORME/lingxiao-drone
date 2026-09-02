@@ -1,0 +1,40 @@
+# 编译产物
+build/
+Objects/
+Listings/
+DebugConfig/
+*.o
+*.obj
+*.bin
+*.hex
+*.axf
+*.elf
+*.map
+*.lst
+*.d
+
+# IDE 配置
+.idea/
+.vscode/
+*.uvguix.*
+*.uvoptx
+JLinkLog.txt
+JLinkSettings.ini
+EventRecorderStub.scvd
+
+# 系统文件
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# 压缩包（已有解压源码时可排除，这里保留原始压缩包）
+# *.rar
+# *.zip
+# *.7z
+
+# 大文件安装包（超 GitHub 100MB 限制，如需上传请用 Git LFS）
+# *.pack
+# *.exe
+
+# 大文件（超过GitHub 100MB限制）
+tools/开发环境安装/Keil.STM32F4xx_DFP.2.2.0.pack
