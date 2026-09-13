@@ -17,12 +17,14 @@ lingxiao-drone/
 │   ├── examples/                       # 官方入门基础例程 (起飞降落、一键航线任务)
 │   └── tools-env/                      # Keil MDK 安装包、J-Link 驱动、匿名上位机与环境配置手册
 │
-├── 🛸 drone-system/                    # 【支柱二：自研完整无人机实战系统】
-│   ├── flight-controller/              # STM32F407 飞控源码（硬件级倾角防侧翻切断保护 + 自定义协议）
-│   ├── edge-vision/                    # 01Studio K230 (CyberCAM) 边缘视觉目标检测 (AprilTag+色块)
-│   ├── companion-computer/             # RDK X5 / 树莓派机载自主控制系统 (T265双目空间定位 + 状态机)
-│   ├── config/                         # 引脚映射、空地蓝牙通信参数与开机自启动服务
-│   └── demos/                          # 🎬 作者实测飞行演示视频库（二维码降落/火源/绕杆/精准着陆）
+├── 🛸 drone-system/                    # 【支柱二：自研完整无人机实战系统（空地协同大闭环）】
+│   ├── companion-computer/             # RDK X5 / 树莓派机载计算系统 (主任务状态机 + shared协议 + basic底座)
+│   ├── flight-controller/              # STM32F407 飞控源码（硬件级倾角防侧翻保护 + 自定义协议）
+│   ├── edge-vision/                    # 01Studio K230 (CyberCAM) 边缘视觉目标检测 (同心圆/十字/AprilTag)
+│   ├── ground-vehicle/                 # 地面协同小车系统 (树莓派网关 + STM32 8路灰度里程控速循线)
+│   ├── ground-station/                 # PyQt5 只读遥测监控地面站 (400×500cm 实时地图 + 中文语音播报)
+│   ├── specs/                          # 统一系统规范 (DCP v1 通信协议 communication_protocol.md + 4组计划)
+│   └── demos/                          # 🎬 作者实测飞行演示视频库（移动动态降落/火源/绕杆/精准着陆）
 │
 └── 🏆 reference-projects/              # 【支柱三：历年电赛与外部参考工程】
     ├── 2024-NUEDC-D/                   # 2024 年全国电赛 D 题主程序与飞控适配
@@ -56,9 +58,11 @@ lingxiao-drone/
 
 ### 2. 实战部署自研系统（看 `drone-system/`）
 如果您需要一套真正能在竞赛或实机测试中自主飞行的全套方案：
-- 阅读 [自研完整无人机实战系统手册](drone-system/README.md)；
+- 阅读 [自研空地协同无人机系统手册](drone-system/README.md)；
 - 硬件连接与通信拓扑：STM32F407 飞控 (`/dev/ttyS1`) + K230 边缘相机 (`/dev/ttyS7`) + T265 双目定位 + 蓝牙空地链路 (`/dev/bt_serial`)；
-- 进入 [`drone-system/companion-computer/`](drone-system/companion-computer/) 运行自主巡航状态机。
+- 机载上位机运行：进入 [`drone-system/companion-computer/`](drone-system/companion-computer/) 运行自主巡航状态机；
+- 地面小车与地面站：参考 [`drone-system/ground-vehicle/`](drone-system/ground-vehicle/) 与 [`drone-system/ground-station/`](drone-system/ground-station/)；
+- 顶层协同规范：参考 [`drone-system/specs/communication_protocol.md`](drone-system/specs/communication_protocol.md)。
 
 ### 3. 高校电赛方案借鉴（看 `reference-projects/`）
 如果您需要参考往届高校参赛思路或机械图纸：

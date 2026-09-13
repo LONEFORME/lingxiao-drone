@@ -1,0 +1,5 @@
+# T-018: blue-square data flight, 1.5 m observation then 0.15 m landing entry.
+# Set DRONE_ARRIVAL_HOLD_S=15 for the first waypoint.
+# The final waypoint uses DRONE_FINAL_WAYPOINT_HOLD_S=0 independently.
+0.0,0.0,1.5
+0.0,0.0,0.15

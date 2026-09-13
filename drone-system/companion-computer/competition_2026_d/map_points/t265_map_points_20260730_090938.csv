@@ -1,0 +1,2 @@
+﻿recorded_at,point,visit,sample_count,valid_count,valid_ratio,x_abs_m,y_abs_m,z_abs_m,raw_x_abs_m,raw_y_abs_m,raw_z_abs_m,std_x_cm,std_y_cm,std_z_cm,yaw_deg,speed_median_m_s,speed_p90_m_s,speed_max_m_s,position_span_m,confidence_min,confidence_median,confidence_3_ratio,x_m,y_m,distance_from_origin_m,step_from_previous_m,closure_xy_m
+2026-07-30 09:09:47,H,1,60,60,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3,3.0,1.0,0.0,0.0,0.0,0.0,

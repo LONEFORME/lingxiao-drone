@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=26省赛地面站
+Comment=启动陆空协同无人机地面站
+Exec=/home/n100/Desktop/26省赛/start_ground_station.sh
+Terminal=false
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=5

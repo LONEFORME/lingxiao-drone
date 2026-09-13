@@ -1,0 +1,8 @@
+# 运行时依赖
+numpy>=1.21.0
+simple_pid>=0.7.0
+pyserial>=3.5
+psutil>=5.9.0
+
+# 硬件依赖（真机必须安装；桌面 DRY_RUN 模式下可缺省，t265.py 自动降级为模拟）
+pyrealsense2>=2.50.0

@@ -1,0 +1,3 @@
+PySide6>=6.6
+pyserial>=3.5
+openpyxl>=3.0

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=启动 26省赛地面站
+Comment=以全屏方式启动 2026 省赛地面站
+Exec=/home/n100/Desktop/26省赛/start_ground_station.sh
+Icon=applications-engineering
+Terminal=false
+StartupNotify=true
+Categories=Utility;

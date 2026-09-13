@@ -1,0 +1,10 @@
+# 无人机项目固定命名规则 — 2026-07-14重建
+# 实测确认三个芯片ID互不相同(见drone_control仓库memory记录)：
+#   雷达(新线材，CH340克隆) = 1a86:7523 -> /dev/radar
+#   蓝牙适配器(CP210x)      = 10c4:ea60 -> /dev/bt_serial
+#   前置USB摄像头(FHD USB Camera) = 0edc:2050 -> /dev/front_cam
+# 注意：CH340克隆芯片没有序列号，如果以后再换一根同型号雷达线导致ID再次
+# 撞车，这条雷达规则会失效，需要重新用lsusb+拔插diff确认。
+SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", SYMLINK+="radar"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", SYMLINK+="bt_serial"
+SUBSYSTEM=="video4linux", ATTRS{idVendor}=="0edc", ATTRS{idProduct}=="2050", ATTR{index}=="0", SYMLINK+="front_cam"
