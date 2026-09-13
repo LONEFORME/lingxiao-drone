@@ -1,145 +1,82 @@
-# 凌霄飞控无人机 — 完整参考资料
+# 凌霄飞控无人机 — 官方基线、自研系统与电赛参考库
 
-> 匿名凌霄飞控（ANO_LX）完整开发资料，包含官方源码、用户手册、通信协议、原理图、IMU 固件、历年电赛参考工程与飞行演示视频。
+> **匿名凌霄飞控（ANO_LX）全栈工程资料库**  
+> 融合 **官方原本基线与开发指南**、**全套自研闭环无人机系统（含作者实机飞行测试实录）** 以及 **历年电赛优秀参考工程**。
 
-## 📋 仓库概览
+---
 
-| 类别 | 说明 |
-|------|------|
-| **飞控平台** | 匿名凌霄飞控 ANO_LX（支持 STM32F407 / MSP432 / TM4C123） |
-| **源码版本** | ANO_LX_FC-2021-7-18（官方源码） |
-| **通信协议** | 匿名通信协议 V7 |
-| **IMU 固件** | hw120-sw123 / hw122-sw131 / hw122-sw132 / hw122-sw133 |
-| **参考工程** | 2026-NUEDC-D（2026省赛D题空地协同）、NUEDC-2024-D、2022-HUST、UAV-2023 |
+## 🏛️ 仓库三大支柱架构
 
-## 📁 目录结构
+本仓库按研发与实战需求严格解耦为三大模块：
 
 ```
-参考工程/
-├── README.md                           # 本文件
-├── .gitignore                          # 排除编译产物、IDE配置
+lingxiao-drone/
+├── 📚 official-guide/                  # 【支柱一：官方原本资料与开发指南】
+│   ├── docs/                           # 官方手册、通信协议V7(权威版)、原理图PCB、IMU固件
+│   ├── firmware-baseline/              # 凌霄官方纯净源码基线 (支持 STM32F407 / MSP432 / TM4C)
+│   ├── examples/                       # 官方入门基础例程 (起飞降落、一键航线任务)
+│   └── tools-env/                      # Keil MDK 安装包、J-Link 驱动、匿名上位机与环境配置手册
 │
-├── 🎬 videos/                          # 飞行演示视频
-│   ├── 二维码.mp4                      # 二维码识别与降落（32MB，竖屏）
-│   ├── 火源.mp4                        # 火源识别与处理（11MB，竖屏）
-│   ├── 绕杆.mp4                        # 绕杆飞行（9MB，横屏）
-│   └── 降落.mp4                        # 精准降落（10MB，横屏）
+├── 🛸 drone-system/                    # 【支柱二：自研完整无人机实战系统】
+│   ├── flight-controller/              # STM32F407 飞控源码（硬件级倾角防侧翻切断保护 + 自定义协议）
+│   ├── edge-vision/                    # 01Studio K230 (CyberCAM) 边缘视觉目标检测 (AprilTag+色块)
+│   ├── companion-computer/             # RDK X5 / 树莓派机载自主控制系统 (T265双目空间定位 + 状态机)
+│   ├── config/                         # 引脚映射、空地蓝牙通信参数与开机自启动服务
+│   └── demos/                          # 🎬 作者实测飞行演示视频库（二维码降落/火源/绕杆/精准着陆）
 │
-├── 📚 docs/                            # 官方文档与资料
-│   ├── 01-用户手册与通信协议/           # 飞控手册、到手飞手册、通信协议V7
-│   ├── 02-芯片数据手册/                 # STM32F405/407、中文参考手册
-│   ├── 03-原理图与PCB/                  # 核心板原理图、底板PCB、兼容版
-│   ├── 04-IMU固件/                      # .ano 固件（多版本）、升级说明
-│   └── 05-其他参考资料/                  # 传感器datasheet、遥控器手册
-│
-├── 💻 firmware/                        # 飞控源码工程
-│   ├── ANO_LX_FC/                      # 官方源码（支持3种MCU）
-│   │   ├── FcSrc/                      # 飞控核心源码
-│   │   ├── DriversBsp/                 # 板级驱动
-│   │   ├── DriversMcu/                 # MCU驱动（STM32F407/MSP432/TM4C123）
-│   │   ├── Mycode/                     # 自定义任务代码
-│   │   ├── ProjectSTM32F407/           # STM32F407 Keil工程
-│   │   ├── ProjectMSP432/              # MSP432 Keil工程
-│   │   └── ProjectTM4C123/             # TM4C123 Keil工程
-│
-├── 🏆 reference-projects/              # 历年电赛参考工程
-│   ├── 2026-NUEDC-D/                   # 2026年省赛D题实战工程（空地协同伴飞投放与移动降落）
-│   │   ├── ANO_LX_FC_倾角保护版/        # STM32F407飞控源码（带硬件防侧翻保护与自定义协议）
-│   │   ├── CyberCamera/                # 01Studio K230 边缘视觉检测端（AprilTag融合）
-│   │   ├── competition_2026_d/         # 机载上位机自主决策与视觉伺服系统（RDK X5/树莓派）
-│   │   └── README.md                   # 2026 D题完整软硬件架构与部署手册
-│   ├── 2022-HUST/                      # 华中科技大学2022参考工程
-│   │   ├── FcSrc/                      # 飞控源码
-│   │   ├── python_sdk/                 # Python上位机（任务规划、GUI）
-│   │   └── ProjectSTM32F407/           # Keil工程
-│   ├── NUEDC-2024-D/                   # 2024年电赛D题主程序
-│   │   └── ANO_LX/                     # 基于凌霄飞控的参赛代码
-│   ├── UAV-2023/                       # 2023年无人机项目
-│   │   ├── UAV-Code/                   # 飞控代码
-│   │   └── MichanicalSolution/         # 机械结构（STL、SolidWorks）
-│   └── 飞控MCU源码工程/                 # 官方源码压缩包 + 官方例程
-│       ├── ANO_LX_FC-2021-7-18.rar    # 官方源码压缩包
-│       ├── 例程1.一键起飞_降落/         # 基础起飞降落
-│       ├── 例程2.一键任务_起飞+悬停+前进+右移+降落/  # 完整任务飞行
-│       └── !!注意请使用119以上版本固件.txt
-│
-└── 🔧 tools/                           # 工具与环境配置
-    ├── 匿名上位机/                      # 匿名上位机下载地址
-    ├── 驱动安装/                        # J-Link驱动安装包（V5.02c/V4.84c）
-    ├── 开发环境安装/                    # Keil MDK、DFP包、安装教程
-    ├── 驱动安装说明.md                  # J-Link驱动安装与常见问题
-    └── 开发环境配置说明.md              # Keil MDK、DFP包、匿名上位机
+└── 🏆 reference-projects/              # 【支柱三：历年电赛与外部参考工程】
+    ├── 2024-NUEDC-D/                   # 2024 年全国电赛 D 题主程序与飞控适配
+    ├── 2022-HUST/                      # 华中科技大学 2022 经典方案（飞控 + Python SDK + 雷达避障）
+    └── UAV-2023/                       # 2023 年无人机项目（含机械结构 SolidWorks / 3D打印 STL）
 ```
 
-## 🚀 快速开始
+---
 
-### 1. 开发环境搭建
+## 🎬 作者实测飞行演示 (Flight Demos)
 
-详见 `tools/开发环境配置说明.md`
+以下均为**作者自研无人机系统实机飞行实录**，展示了自主识别、避障巡航、动态跟随与精准降落的全闭环表现：
 
-- 安装 Keil MDK（安装包在 `tools/开发环境安装/`）
-- 安装对应 MCU 的 DFP 包
-- 安装 J-Link 驱动（详见 `tools/驱动安装说明.md`）
-- 下载匿名上位机 V7
+| 演示项目 | 实测场景与核心技术 | 规格 | 视频文件 |
+| :--- | :--- | :--- | :--- |
+| **二维码识别降落** | 机载相机实时解算 AprilTag/二维码空间位姿，微调航向平稳着陆 | 720×1280 竖屏 (32MB) | [`drone-system/demos/二维码.mp4`](drone-system/demos/二维码.mp4) |
+| **火源定位与处理** | 下视视觉色域自适应分割，高空悬停并执行目标处置 | 720×1280 竖屏 (11MB) | [`drone-system/demos/火源.mp4`](drone-system/demos/火源.mp4) |
+| **自主绕杆避障** | T265 双目 V-SLAM 空间高精定位与连续避障航点平滑跟踪 | 720×406 横屏 (9MB) | [`drone-system/demos/绕杆.mp4`](drone-system/demos/绕杆.mp4) |
+| **移动平台动态降落** | 动态锁定移动靶标小车，自适应地面效应与气流完成平稳着陆 | 960×720 横屏 (10MB) | [`drone-system/demos/降落.mp4`](drone-system/demos/降落.mp4) |
 
-### 2. 编译飞控固件
+---
 
-```bash
-# 打开 Keil 工程（以 STM32F407 为例）
-firmware/ANO_LX_FC/ProjectSTM32F407/ANO_LX_STM32F407.uvprojx
+## 🚀 快速上手与使用指引
 
-# 编译并下载到飞控
-# 使用 J-Link SWD 接口连接
-```
+### 1. 新手入门与底层开发（看 `official-guide/`）
+如果您是首次接触匿名凌霄飞控，或者需要查阅芯片原理图、原生通信协议：
+- 阅读 [官方原本资料与开发指南](official-guide/README.md)；
+- 查看 [`official-guide/tools-env/开发环境配置说明.md`](official-guide/tools-env/开发环境配置说明.md) 搭建 Keil MDK 与 J-Link 驱动；
+- 打开 [`official-guide/firmware-baseline/`](official-guide/firmware-baseline/) 编译纯净官方源码；
+- 学习 [`official-guide/examples/`](official-guide/examples/) 体验起飞与定高降落。
 
-### 3. 升级 IMU 固件
+### 2. 实战部署自研系统（看 `drone-system/`）
+如果您需要一套真正能在竞赛或实机测试中自主飞行的全套方案：
+- 阅读 [自研完整无人机实战系统手册](drone-system/README.md)；
+- 硬件连接与通信拓扑：STM32F407 飞控 (`/dev/ttyS1`) + K230 边缘相机 (`/dev/ttyS7`) + T265 双目定位 + 蓝牙空地链路 (`/dev/bt_serial`)；
+- 进入 [`drone-system/companion-computer/`](drone-system/companion-computer/) 运行自主巡航状态机。
 
-IMU 固件位于 `docs/04-IMU固件/`，使用匿名上位机升级。
+### 3. 高校电赛方案借鉴（看 `reference-projects/`）
+如果您需要参考往届高校参赛思路或机械图纸：
+- 查阅 [历年电赛参考工程索引](reference-projects/README.md)；
+- 机械结构与 3D 打印件：参考 [`reference-projects/UAV-2023/MichanicalSolution/`](reference-projects/UAV-2023/MichanicalSolution/)；
+- 地面站 GUI 与雷达避障：参考 [`reference-projects/2022-HUST/python_sdk/`](reference-projects/2022-HUST/python_sdk/)。
 
-> ⚠️ 注意：119 版以上固件必须搭配新的外部 MCU 程序，请注意实时控制帧协议变化。
-
-### 4. 运行例程
-
-从 `reference-projects/飞控MCU源码工程/` 开始，先测试基础功能：
-- 例程1：一键起飞_降落
-- 例程2：一键任务（起飞+悬停+前进+右移+降落）
-
-### 5. 2026 电赛省赛 D 题实战方案
-
-完整空地协同实战方案详见 [2026-NUEDC-D 快速上手手册](reference-projects/2026-NUEDC-D/README.md)：
-- **飞控端**：STM32F407 固件增加 `angle_protect` 防侧翻硬件级切断保护与自定义串口指令解析。
-- **视觉端**：01Studio K230 (CyberCAM) 边缘计算板运行 AprilTag + 色块融合定位，经串口 VS1 协议输出。
-- **机载大脑**：RDK X5 / 树莓派运行 `competition_2026_d`，集成 Intel RealSense T265 双目空间定位与自主状态机。
-- **任务执行**：覆盖 Task 1（伴飞巡航与舵机精准投放）与 Task 2（移动小车动态跟踪、平台平稳降落与二次起飞）。
-
-## 📡 通信协议
-
-匿名通信协议 V7 详见 `docs/01-用户手册与通信协议/匿名通信协议V7.pdf`
-
-关键文档：
-- `匿名--凌霄--飞控手册.V1.07pdf.pdf` — 飞控完整手册
-- `匿名--凌霄到手飞手册.pdf` — 到手飞快速上手
-- `匿名凌霄FC姿态单参数控制参考配置.txt` — 姿态参数配置参考
-
-## 🎬 飞行演示
-
-`videos/` 目录包含历年电赛任务的飞行演示视频，已压缩为网页友好格式（H.264 + AAC）。
-
-| 视频 | 说明 | 分辨率 | 大小 |
-|------|------|--------|------|
-| `videos/二维码.mp4` | 二维码识别与降落演示 | 720×1280 竖屏 | 32 MB |
-| `videos/火源.mp4` | 火源识别与处理演示 | 720×1280 竖屏 | 11 MB |
-| `videos/绕杆.mp4` | 绕杆飞行演示 | 720×406 横屏 | 9 MB |
-| `videos/降落.mp4` | 精准降落演示 | 960×720 横屏 | 10 MB |
+---
 
 ## ⚠️ 注意事项
 
-1. **IMU 固件版本**：使用 119 版以上固件时，必须搭配新的外部 MCU 程序
-2. **三种 MCU 平台**：STM32F407、MSP432、TM4C123，选择对应工程文件
-3. **编译产物**：build/、Objects/ 等目录已被 .gitignore 排除，首次编译会自动生成
-4. **大文件**：Keil DFP 安装包（213MB）在 `tools/开发环境安装/`，如需上传 GitHub 请用 Git LFS
+1. **编译产物过滤**：本仓库已在 `.gitignore` 中配置过滤 Keil 中间编译产物（`.o`、`.axf`、`.d` 等）及 Python 缓存（`__pycache__`），保持代码库极度轻量整洁。
+2. **大文件说明**：Keil DFP 支持包由于体积限制已通过 `.gitignore` 排除，下载地址详见环境说明文档。
+3. **IMU 固件匹配**：119 版本以上 IMU 固件使用新版控制帧，请务必注意上位机与飞控固件版本协同。
+
+---
 
 ## 📝 相关链接
 
 - 匿名科技官网：http://www.anotc.com/
-- GitHub：https://github.com/LONEFORME
+- GitHub 组织：https://github.com/LONEFORME
