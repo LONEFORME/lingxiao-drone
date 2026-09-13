@@ -1,4 +1,4 @@
-﻿# 2026 电赛 D 题：空地协同无人机与移动平台实战系统 (Drone System)
+# 2026 电赛 D 题：空地协同无人机与移动平台实战系统 (Drone System)
 
 本系统是面向全国大学生电子设计竞赛（2026 年省赛 D 题）研发的**“空地协同全栈实战系统”**，涵盖空中无人机、下视边缘视觉、机载决策计算、地面协同小车、只读监控地面站与统一通信协议的完整闭环。
 
@@ -50,11 +50,16 @@
 | **[`edge-vision/`](./edge-vision/)** | 嘉楠 K230 / CyberCamera | 下视靶标识别、同心圆与中心十字提取、VS1 帧输出 | Python / MicroPython, OpenCV |
 | **[`ground-vehicle/`](./ground-vehicle/)** | 树莓派 + STM32F103 | 巡线移动靶平台、四段里程控速规划、一键发车握手 | C语言 (Keil) + Python 3 |
 | **[`ground-station/`](./ground-station/)** | PC (Windows) / N100 | 400×500cm 场地态势显示、双机轨迹吸附、任务语音播报 | PyQt5, PySerial |
+| **[`docs/`](./docs/)** | 设计报告与技术文档 | 完整脱敏竞赛设计报告、硬件引脚手册与赛题答辩 FAQ | Markdown, 原理图/流程图 |
 | **[`specs/`](./specs/)** | 规范文档 | 系统唯一真理规范《D题统一通信协议》与 4 组分工计划 | Markdown |
 | **[`demos/`](./demos/)** | 视频资料 | 作者实机打靶、降落、避障演示实拍视频 | MP4 / AVI |
 
 ---
 
-## 规范与协议支持
-* 通信协议详细规范见 **[`specs/communication_protocol.md`](./specs/communication_protocol.md)**；
-* 四组分工计划见 **[`specs/plans/`](./specs/plans/)**。
+## 理论报告、硬件图谱与答辩指引
+* 📜 **设计报告 (脱敏版)**：**[`docs/EDC-2026-D-Report.md`](./docs/EDC-2026-D-Report.md)**（系统方案、视觉伺服理论推导、飞控硬件原理图、抛投及动态起降实测数据表）；
+* 🎤 **专家答辩与赛题 FAQ**：**[`docs/competition_faq.md`](./docs/competition_faq.md)**（赛务组权威答疑与现场评委答辩防坑指南）；
+* 🔌 **硬件引脚对照指南**：**[`docs/hardware/`](./docs/hardware/)**（RDK X5、树莓派 4B、香橙派 5 Max 等核心板引脚与线序图）；
+* 📐 **系统统一通信协议**：**[`specs/communication_protocol.md`](./specs/communication_protocol.md)**；
+* 📋 **研发分工落地计划**：**[`specs/plans/`](./specs/plans/)**。
+

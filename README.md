@@ -18,6 +18,7 @@ lingxiao-drone/
 │   └── tools-env/                      # Keil MDK 安装包、J-Link 驱动、匿名上位机与环境配置手册
 │
 ├── 🛸 drone-system/                    # 【支柱二：自研完整无人机实战系统（空地协同大闭环）】
+│   ├── docs/                           # 🏆 理论设计报告 (脱敏版)、硬件引脚对照手册、专家答辩 FAQ
 │   ├── companion-computer/             # RDK X5 / 树莓派机载计算系统 (主任务状态机 + shared协议 + basic底座)
 │   ├── flight-controller/              # STM32F407 飞控源码（硬件级倾角防侧翻保护 + 自定义协议）
 │   ├── edge-vision/                    # 01Studio K230 (CyberCAM) 边缘视觉目标检测 (同心圆/十字/AprilTag)
@@ -69,6 +70,13 @@ lingxiao-drone/
 - 查阅 [历年电赛参考工程索引](reference-projects/README.md)；
 - 机械结构与 3D 打印件：参考 [`reference-projects/UAV-2023/MichanicalSolution/`](reference-projects/UAV-2023/MichanicalSolution/)；
 - 地面站 GUI 与雷达避障：参考 [`reference-projects/2022-HUST/python_sdk/`](reference-projects/2022-HUST/python_sdk/)。
+
+### 4. 查阅理论报告与答辩指引（看 `drone-system/docs/`）
+如果您需要撰写电赛设计报告、参考飞控电路原理图或准备专家答辩：
+- 阅读 [全国电赛 D 题脱敏设计报告](drone-system/docs/EDC-2026-D-Report.md)；
+- 查阅 [专家答辩与现场赛题 FAQ 指南](drone-system/docs/competition_faq.md)；
+- 对照 [各计算板卡硬件引脚与线序手册](drone-system/docs/hardware/README.md)。
+
 
 ---
 
