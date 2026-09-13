@@ -1,0 +1,10 @@
+# T265 map coordinate verification flight
+# H -> A -> B -> C -> D -> H, then descend to 0.15 m for automatic landing
+# x_m,y_m,z_m
+0.000,0.000,1.00
+0.862,-0.373,1.00
+2.332,-0.334,1.00
+2.531,-1.829,1.00
+1.023,-1.926,1.00
+0.000,0.000,1.00
+0.000,0.000,0.15

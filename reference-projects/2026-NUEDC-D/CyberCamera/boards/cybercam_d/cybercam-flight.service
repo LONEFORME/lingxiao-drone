@@ -1,0 +1,27 @@
+[Unit]
+Description=Cyber Camera competition flight vision
+After=basic.target cybercam-usb.service cybercam-usb-worker.service
+Conflicts=cybercam-desktop.service
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/FJJ/cybercam_d
+Environment=PYTHONUNBUFFERED=1
+Environment=CYBERCAM_MANAGE_DESKTOP_SERVICE=off
+Environment=CYBERCAM_DEBUG_RECORD=off
+Environment=CYBERCAM_SERIAL_PORT=/dev/ttyS2
+Environment=CYBERCAM_TARGET=ring_cross
+Environment=CYBERCAM_BACKEND=opencv
+Environment=CYBERCAM_CAMERA=/dev/video1
+Environment=CYBERCAM_WIDTH=640
+Environment=CYBERCAM_HEIGHT=480
+Environment=CYBERCAM_FPS=30
+ExecStart=/home/pi/FJJ/cybercam_d/run_flight.sh
+Restart=always
+RestartSec=2
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target
