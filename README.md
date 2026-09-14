@@ -68,7 +68,7 @@ lingxiao-drone/
 ### 3. 高校电赛方案借鉴（看 `reference-projects/`）
 如果您需要参考往届高校参赛思路或机械图纸：
 - 查阅 [历年电赛参考工程索引](reference-projects/README.md)；
-- 机械结构与 3D 打印件：参考 [`reference-projects/UAV-2023/MichanicalSolution/`](reference-projects/UAV-2023/MichanicalSolution/)；
+- 机械结构与 3D 打印件：参考 [`reference-projects/UAV-2023/UAV_2023-master/MichanicalSolution/`](reference-projects/UAV-2023/UAV_2023-master/MichanicalSolution/)；
 - 地面站 GUI 与雷达避障：参考 [`reference-projects/2022-HUST/python_sdk/`](reference-projects/2022-HUST/python_sdk/)。
 
 ### 4. 查阅理论报告与答辩指引（看 `drone-system/docs/`）
