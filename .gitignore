@@ -47,3 +47,7 @@ desktop.ini
 
 # 大文件（超过GitHub 100MB限制）
 tools/开发环境安装/Keil.STM32F4xx_DFP.2.2.0.pack
+
+# Python 编译缓存（散落的 .pyc，__pycache__/ 之外也可能存在）
+*.pyc
+*.pyo
