@@ -24,8 +24,14 @@ lingxiao-drone/
 │   ├── edge-vision/                    # 01Studio K230 (CyberCAM) 边缘视觉目标检测 (同心圆/十字/AprilTag)
 │   ├── ground-vehicle/                 # 地面协同小车系统 (树莓派网关 + STM32 8路灰度里程控速循线)
 │   ├── ground-station/                 # PyQt5 只读遥测监控地面站 (400×500cm 实时地图 + 中文语音播报)
+│   ├── onboard-perception/             # 机载雷达感知层（镭神 N10P basic_radar，自 rdk-x5-flight-system 并入）
+│   ├── vision-hardware/                # 板端视觉硬件调试（IMX219 图传 / GPIO 测试 / T265，自 rdk-x5-flight-system 并入）
 │   ├── specs/                          # 统一系统规范 (DCP v1 通信协议 communication_protocol.md + 4组计划)
+│   ├── deploy/                         # 运维部署（systemd 自启 / udev 串口别名 / watchdog T265 看门狗 / 运维工具）
 │   └── demos/                          # 🎬 作者实测飞行演示视频库（移动动态降落/火源/绕杆/精准着陆）
+│
+├── 🗄️ legacy-missions/                 # 历年练兵工程归档（circle_pole/fire_patrol/warehouse_inventory/
+│                                       #   plant_protection_2021/competition_2026/original，不随现役维护）
 │
 └── 🏆 reference-projects/              # 【支柱三：历年电赛与外部参考工程】
     ├── 2024-NUEDC-D/                   # 2024 年全国电赛 D 题主程序与飞控适配
@@ -85,6 +91,7 @@ lingxiao-drone/
 1. **编译产物过滤**：本仓库已在 `.gitignore` 中配置过滤 Keil 中间编译产物（`.o`、`.axf`、`.d` 等）及 Python 缓存（`__pycache__`），保持代码库极度轻量整洁。
 2. **大文件说明**：Keil DFP 支持包由于体积限制已通过 `.gitignore` 排除，下载地址详见环境说明文档。
 3. **IMU 固件匹配**：119 版本以上 IMU 固件使用新版控制帧，请务必注意上位机与飞控固件版本协同。
+4. **本仓为完整无人机系统真源**：2026-10-01 起，`rdk-x5-flight-system`（RDK X5 机载工程仓）的独有资产已并入本仓（雷达感知 / T265 看门狗 / 板端视觉硬件 / 历年练兵工程），该仓已退役归档；机载 2026-D 现役代码以 `drone-system/companion-computer/` 为唯一真源。
 
 ---
 
