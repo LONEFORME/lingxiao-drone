@@ -1,0 +1,22 @@
+{
+  "name": "2021 plant protection (G题) — 坐标需按实际场地标定",
+  "cruise_height_m": 1.5,
+  "home_hold_s": 1.0,
+  "home": {"x": 0.0, "y": 0.0},
+  "laser_spray_times": 2,
+  "laser_flash_s": 0.5,
+  "laser_interval_s": 0.8,
+  "rows": [
+    {"row_y": 0.25, "cols": [1, 2]},
+    {"row_y": 0.75, "cols": [3, 4, 5, 6]},
+    {"row_y": 1.25, "cols": [7, 8, 9, 10]},
+    {"row_y": 1.75, "cols": [11, 12, 13, 14]},
+    {"row_y": 2.25, "cols": [15, 16]},
+    {"row_y": 2.75, "cols": [17, 18, 19, 20]},
+    {"row_y": 3.25, "cols": [21, 22, 23, 24]},
+    {"row_y": 3.75, "cols": [25, 26, 27, 28]}
+  ],
+  "default_cell_x_start": -0.75,
+  "cell_spacing_x": 0.5,
+  "start_grid": 21
+}

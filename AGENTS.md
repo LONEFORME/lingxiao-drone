@@ -1,7 +1,7 @@
 # 凌霄飞控 · AI 速查卡
 
 > 一句话：ANO_LX 凌霄飞控全栈库 —— 官方基线 + 自研空地协同大闭环 + 历年电赛参考工程。
-> **详细说明看 `README.md`**。本卡只放"不看就会犯错"的东西。
+> **详细说明看 `README.md`**，队友在线专栏见 [AUV 无人机开发教程](https://fdogelover.github.io/AUV/)。本卡只放"不看就会犯错"的东西。
 
 ---
 
@@ -22,7 +22,7 @@
 
 **4. 🚫 不要重做代码溯源 —— 结论已经有了。**
 
-完整实证结论在 **`../.workbuddy/memory/lingxiao-lineage.md`**（八轮追问的源码级比对结果）。
+完整实证结论在 **`../../.workbuddy/memory/lingxiao-lineage.md`**（八轮追问的源码级比对结果）。
 一句话版：
 
 > 自研 FC = **官方基线骨架** + **设计层继承自 2024-NUEDC-D**（T265 速度替换光流的同槽位开关、ch5 改定点模式）；
@@ -80,4 +80,4 @@ reference-projects/      电赛参考工程（**只作参考**）
 - **官方帧无校验、无帧类型**；自研补了 XOR 校验 + 三帧类型复用同一串口（`AA 01/02/03`）
 - 协议权威文档：`official-guide/docs/01-用户手册与通信协议/匿名通信协议V7.pdf`
 
-细节与真值表 → `../.workbuddy/memory/lingxiao-lineage.md`
+细节与真值表 → `../../.workbuddy/memory/lingxiao-lineage.md`

@@ -1,0 +1,5 @@
+numpy>=1.21.0
+simple_pid>=0.7.0
+pyserial>=3.5
+opencv-python>=4.5.0
+psutil>=5.9.0

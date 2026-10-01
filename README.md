@@ -88,7 +88,9 @@ lingxiao-drone/
 
 ---
 
-## 📝 相关链接
+## 📝 相关链接与推荐专栏
 
-- 匿名科技官网：http://www.anotc.com/
-- GitHub 组织：https://github.com/LONEFORME
+- **AUV 无人机在线开发教程 (By FDogeLover)**：https://fdogelover.github.io/AUV/ （涵盖三层架构、状态机、事件总线、两级降落与 PID 调参）
+- **AUV 配套开源仓库**：https://github.com/FDogeLover/AUV
+- **匿名科技官网**：http://www.anotc.com/
+- **GitHub 组织**：https://github.com/LONEFORME

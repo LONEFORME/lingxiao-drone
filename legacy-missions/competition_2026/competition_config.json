@@ -1,0 +1,65 @@
+{
+  "name": "2026 competition preparation field",
+  "cruise_height_m": 1.0,
+  "home_hold_s": 1.0,
+  "auto_snapshot": {
+    "enabled": false,
+    "required": false,
+    "trigger_actions": ["observe", "snapshot", "inspect"],
+    "timeout_s": 1.0,
+    "start_timeout_s": 3.0,
+    "stop_timeout_s": 0.5,
+    "queue_size": 8,
+    "max_snapshots": 32,
+    "max_consecutive_failures": 3
+  },
+  "video": {
+    "active_profile": "none",
+    "snapshot_dir": "snapshots",
+    "profiles": {
+      "capture_device": {
+        "receiver": {
+          "enabled": true,
+          "backend": "capture_device",
+          "source": "/dev/video0",
+          "options": {"width": 1280, "height": 720, "fps": 15}
+        },
+        "publisher": {
+          "enabled": false,
+          "backend": "none",
+          "target": "",
+          "options": {}
+        }
+      },
+      "board_network": {
+        "receiver": {
+          "enabled": true,
+          "backend": "network_stream",
+          "source": "rtsp://192.168.10.2:8554/live",
+          "options": {"transport": "udp", "latency_ms": 200}
+        },
+        "publisher": {
+          "enabled": true,
+          "backend": "network_stream",
+          "target": "rtsp://0.0.0.0:8554/live",
+          "options": {"codec": "h264", "bitrate_mbps": 2, "fps": 15}
+        }
+      }
+    }
+  },
+  "home": {
+    "id": "HOME",
+    "x": 0.0,
+    "y": 0.0,
+    "z": 1.0
+  },
+  "scout_order": ["P1", "P2", "P3", "P4", "P5", "P6"],
+  "points": [
+    {"id": "P1", "x": -0.6, "y": 0.0, "hold_s": 2.0, "action": "observe"},
+    {"id": "P2", "x": -0.6, "y": 0.6, "hold_s": 2.0, "action": "observe"},
+    {"id": "P3", "x": 0.0, "y": 0.6, "hold_s": 2.0, "action": "observe"},
+    {"id": "P4", "x": 0.6, "y": 0.6, "hold_s": 2.0, "action": "observe"},
+    {"id": "P5", "x": 0.6, "y": 0.0, "hold_s": 2.0, "action": "observe"},
+    {"id": "P6", "x": 0.0, "y": -0.6, "hold_s": 2.0, "action": "observe"}
+  ]
+}
