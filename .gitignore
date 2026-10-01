@@ -45,9 +45,11 @@ desktop.ini
 # *.pack
 # *.exe
 
-# 大文件（超过GitHub 100MB限制 / 原厂大包不入库，本地与 06_凌霄官方原厂资料包 有正本）
-official-guide/tools-env/开发环境安装/*.pack
-official-guide/firmware-baseline/*.rar
+# 大文件（超过GitHub 100MB限制 / 原厂大包不入库，本地与 05_凌霄官方原厂资料包 有正本）
+**/开发环境安装/*.pack
+**/*.pack
+官方资料/固件基线/*.rar
+*.rar
 
 # Python 编译缓存（散落的 .pyc，__pycache__/ 之外也可能存在）
 *.pyc
