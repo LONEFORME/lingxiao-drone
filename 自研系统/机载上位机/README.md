@@ -7,7 +7,7 @@
 ## 目录架构
 
 ```text
-companion-computer/
+机载上位机/
 ├── competition_2026_d/          # 【核心业务】2026 电赛 D 题主任务决策与状态机
 │   ├── auto_start.py            #   任务启动统一主入口（安全门禁、任务分发、心跳守护）
 │   ├── task1_flight.py          #   任务一（伴飞与抛投）实时飞行控制循环
@@ -35,7 +35,7 @@ companion-computer/
 │   │   └── resource_monitor.py  #     板载 CPU/内存状态监视
 │   └── router.txt               #   航线航点定义文件
 │
-├── deploy/                      # 【运维部署】板载自启动服务与端口映射
+├── 部署/                      # 【运维部署】板载自启动服务与端口映射
 │   ├── systemd/                 #   开机自启服务 (competition-2026-d-autostart.service)
 │   ├── udev/                    #   Linux 设备固定规则 (99-drone-serial.rules, 99-realsense-libusb.rules)
 │   └── tools/                   #   运维同步与日志分析工具 (sync_to_board.sh, flight_log_analyzer.py)
@@ -54,7 +54,7 @@ pip install pytest pyserial simple-pid numpy psutil opencv-python
 ```
 
 ### 2. 运行单元测试
-在 `companion-computer` 目录下运行：
+在 `机载上位机` 目录下运行：
 ```bash
 pytest shared/
 pytest competition_2026_d/
@@ -66,8 +66,8 @@ pytest competition_2026_d/
 
 1. **配置 Udev 规则（固定串口别名）**：
    ```bash
-   sudo cp deploy/udev/99-drone-serial.rules /etc/udev/rules.d/
-   sudo cp deploy/udev/99-realsense-libusb.rules /etc/udev/rules.d/
+   sudo cp 部署/udev/99-drone-serial.rules /etc/udev/rules.d/
+   sudo cp 部署/udev/99-realsense-libusb.rules /etc/udev/rules.d/
    sudo udevadm control --reload-rules && sudo udevadm trigger
    ```
    * 蓝牙透传串口固定映射为 `/dev/bt_serial`
@@ -75,7 +75,7 @@ pytest competition_2026_d/
 
 2. **配置开机自启动服务**：
    ```bash
-   sudo cp deploy/systemd/competition-2026-d-autostart.service /etc/systemd/system/
+   sudo cp 部署/systemd/competition-2026-d-autostart.service /etc/systemd/system/
    sudo systemctl daemon-reload
    sudo systemctl enable competition-2026-d-autostart.service
    sudo systemctl start competition-2026-d-autostart.service

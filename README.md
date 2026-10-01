@@ -11,29 +11,29 @@
 
 ```
 lingxiao-drone/
-├── 📚 official-guide/                  # 【支柱一：官方原本资料与开发指南】
-│   ├── docs/                           # 官方手册、通信协议V7(权威版)、原理图PCB、IMU固件
-│   ├── firmware-baseline/              # 凌霄官方纯净源码基线 (支持 STM32F407 / MSP432 / TM4C)
+├── 📚 官方资料/                  # 【支柱一：官方原本资料与开发指南】
+│   ├── 文档/                           # 官方手册、通信协议V7(权威版)、原理图PCB、IMU固件
+│   ├── 固件基线/              # 凌霄官方纯净源码基线 (支持 STM32F407 / MSP432 / TM4C)
 │   ├── examples/                       # 官方入门基础例程 (起飞降落、一键航线任务)
-│   └── tools-env/                      # Keil MDK 安装包、J-Link 驱动、匿名上位机与环境配置手册
+│   └── 工具环境/                      # Keil MDK 安装包、J-Link 驱动、匿名上位机与环境配置手册
 │
-├── 🛸 drone-system/                    # 【支柱二：自研完整无人机实战系统（空地协同大闭环）】
-│   ├── docs/                           # 🏆 理论设计报告 (脱敏版)、硬件引脚对照手册、专家答辩 FAQ
-│   ├── companion-computer/             # RDK X5 / 树莓派机载计算系统 (主任务状态机 + shared协议 + basic底座)
-│   ├── flight-controller/              # STM32F407 飞控源码（硬件级倾角防侧翻保护 + 自定义协议）
-│   ├── edge-vision/                    # 01Studio K230 (CyberCAM) 边缘视觉目标检测 (同心圆/十字/AprilTag)
-│   ├── ground-vehicle/                 # 地面协同小车系统 (树莓派网关 + STM32 8路灰度里程控速循线)
-│   ├── ground-station/                 # PyQt5 只读遥测监控地面站 (400×500cm 实时地图 + 中文语音播报)
-│   ├── onboard-perception/             # 机载雷达感知层（镭神 N10P basic_radar，自 rdk-x5-flight-system 并入）
-│   ├── vision-hardware/                # 板端视觉硬件调试（IMX219 图传 / GPIO 测试 / T265，自 rdk-x5-flight-system 并入）
-│   ├── specs/                          # 统一系统规范 (DCP v1 通信协议 communication_protocol.md + 4组计划)
-│   ├── deploy/                         # 运维部署（systemd 自启 / udev 串口别名 / watchdog T265 看门狗 / 运维工具）
-│   └── demos/                          # 🎬 作者实测飞行演示视频库（移动动态降落/火源/绕杆/精准着陆）
+├── 🛸 自研系统/                    # 【支柱二：自研完整无人机实战系统（空地协同大闭环）】
+│   ├── 文档/                           # 🏆 理论设计报告 (脱敏版)、硬件引脚对照手册、专家答辩 FAQ
+│   ├── 机载上位机/             # RDK X5 / 树莓派机载计算系统 (主任务状态机 + shared协议 + basic底座)
+│   ├── 飞控源码/              # STM32F407 飞控源码（硬件级倾角防侧翻保护 + 自定义协议）
+│   ├── 边缘视觉/                    # 01Studio K230 (CyberCAM) 边缘视觉目标检测 (同心圆/十字/AprilTag)
+│   ├── 地面小车/                 # 地面协同小车系统 (树莓派网关 + STM32 8路灰度里程控速循线)
+│   ├── 地面站/                 # PyQt5 只读遥测监控地面站 (400×500cm 实时地图 + 中文语音播报)
+│   ├── 机载感知/             # 机载雷达感知层（镭神 N10P basic_radar，自 rdk-x5-flight-system 并入）
+│   ├── 视觉硬件/                # 板端视觉硬件调试（IMX219 图传 / GPIO 测试 / T265，自 rdk-x5-flight-system 并入）
+│   ├── 规范/                          # 统一系统规范 (DCP v1 通信协议 communication_protocol.md + 4组计划)
+│   ├── 部署/                         # 运维部署（systemd 自启 / udev 串口别名 / watchdog T265 看门狗 / 运维工具）
+│   └── 演示视频/                          # 🎬 作者实测飞行演示视频库（移动动态降落/火源/绕杆/精准着陆）
 │
-├── 🗄️ legacy-missions/                 # 历年练兵工程归档（circle_pole/fire_patrol/warehouse_inventory/
+├── 🗄️ 历年任务归档/                 # 历年练兵工程归档（circle_pole/fire_patrol/warehouse_inventory/
 │                                       #   plant_protection_2021/competition_2026/original，不随现役维护）
 │
-└── 🏆 reference-projects/              # 【支柱三：历年电赛与外部参考工程】
+└── 🏆 参考工程/              # 【支柱三：历年电赛与外部参考工程】
     ├── 2024-NUEDC-D/                   # 2024 年全国电赛 D 题主程序与飞控适配
     ├── 2022-HUST/                      # 华中科技大学 2022 经典方案（飞控 + Python SDK + 雷达避障）
     └── UAV-2023/                       # 2023 年无人机项目（含机械结构 SolidWorks / 3D打印 STL）
@@ -47,41 +47,41 @@ lingxiao-drone/
 
 | 演示项目 | 实测场景与核心技术 | 规格 | 视频文件 |
 | :--- | :--- | :--- | :--- |
-| **二维码识别降落** | 机载相机实时解算 AprilTag/二维码空间位姿，微调航向平稳着陆 | 720×1280 竖屏 (32MB) | [`drone-system/demos/二维码.mp4`](drone-system/demos/二维码.mp4) |
-| **火源定位与处理** | 下视视觉色域自适应分割，高空悬停并执行目标处置 | 720×1280 竖屏 (11MB) | [`drone-system/demos/火源.mp4`](drone-system/demos/火源.mp4) |
-| **自主绕杆避障** | T265 双目 V-SLAM 空间高精定位与连续避障航点平滑跟踪 | 720×406 横屏 (9MB) | [`drone-system/demos/绕杆.mp4`](drone-system/demos/绕杆.mp4) |
-| **移动平台动态降落** | 动态锁定移动靶标小车，自适应地面效应与气流完成平稳着陆 | 960×720 横屏 (10MB) | [`drone-system/demos/降落.mp4`](drone-system/demos/降落.mp4) |
+| **二维码识别降落** | 机载相机实时解算 AprilTag/二维码空间位姿，微调航向平稳着陆 | 720×1280 竖屏 (32MB) | [`自研系统/演示视频/二维码.mp4`](自研系统/演示视频/二维码.mp4) |
+| **火源定位与处理** | 下视视觉色域自适应分割，高空悬停并执行目标处置 | 720×1280 竖屏 (11MB) | [`自研系统/演示视频/火源.mp4`](自研系统/演示视频/火源.mp4) |
+| **自主绕杆避障** | T265 双目 V-SLAM 空间高精定位与连续避障航点平滑跟踪 | 720×406 横屏 (9MB) | [`自研系统/演示视频/绕杆.mp4`](自研系统/演示视频/绕杆.mp4) |
+| **移动平台动态降落** | 动态锁定移动靶标小车，自适应地面效应与气流完成平稳着陆 | 960×720 横屏 (10MB) | [`自研系统/演示视频/降落.mp4`](自研系统/演示视频/降落.mp4) |
 
 ---
 
 ## 🚀 快速上手与使用指引
 
-### 1. 新手入门与底层开发（看 `official-guide/`）
+### 1. 新手入门与底层开发（看 `官方资料/`）
 如果您是首次接触匿名凌霄飞控，或者需要查阅芯片原理图、原生通信协议：
-- 阅读 [官方原本资料与开发指南](official-guide/README.md)；
-- 查看 [`official-guide/tools-env/开发环境配置说明.md`](official-guide/tools-env/开发环境配置说明.md) 搭建 Keil MDK 与 J-Link 驱动；
-- 打开 [`official-guide/firmware-baseline/`](official-guide/firmware-baseline/) 编译纯净官方源码；
-- 学习 [`official-guide/examples/`](official-guide/examples/) 体验起飞与定高降落。
+- 阅读 [官方原本资料与开发指南](官方资料/README.md)；
+- 查看 [`官方资料/工具环境/开发环境配置说明.md`](官方资料/工具环境/开发环境配置说明.md) 搭建 Keil MDK 与 J-Link 驱动；
+- 打开 [`官方资料/固件基线/`](官方资料/固件基线/) 编译纯净官方源码；
+- 学习 [`官方资料/例程/`](官方资料/例程/) 体验起飞与定高降落。
 
-### 2. 实战部署自研系统（看 `drone-system/`）
+### 2. 实战部署自研系统（看 `自研系统/`）
 如果您需要一套真正能在竞赛或实机测试中自主飞行的全套方案：
-- 阅读 [自研空地协同无人机系统手册](drone-system/README.md)；
+- 阅读 [自研空地协同无人机系统手册](自研系统/README.md)；
 - 硬件连接与通信拓扑：STM32F407 飞控 (`/dev/ttyS1`) + K230 边缘相机 (`/dev/ttyS7`) + T265 双目定位 + 蓝牙空地链路 (`/dev/bt_serial`)；
-- 机载上位机运行：进入 [`drone-system/companion-computer/`](drone-system/companion-computer/) 运行自主巡航状态机；
-- 地面小车与地面站：参考 [`drone-system/ground-vehicle/`](drone-system/ground-vehicle/) 与 [`drone-system/ground-station/`](drone-system/ground-station/)；
-- 顶层协同规范：参考 [`drone-system/specs/communication_protocol.md`](drone-system/specs/communication_protocol.md)。
+- 机载上位机运行：进入 [`自研系统/机载上位机/`](自研系统/机载上位机/) 运行自主巡航状态机；
+- 地面小车与地面站：参考 [`自研系统/地面小车/`](自研系统/地面小车/) 与 [`自研系统/地面站/`](自研系统/地面站/)；
+- 顶层协同规范：参考 [`自研系统/规范/communication_protocol.md`](自研系统/规范/communication_protocol.md)。
 
-### 3. 高校电赛方案借鉴（看 `reference-projects/`）
+### 3. 高校电赛方案借鉴（看 `参考工程/`）
 如果您需要参考往届高校参赛思路或机械图纸：
-- 查阅 [历年电赛参考工程索引](reference-projects/README.md)；
-- 机械结构与 3D 打印件：参考 [`reference-projects/UAV-2023/UAV_2023-master/MichanicalSolution/`](reference-projects/UAV-2023/UAV_2023-master/MichanicalSolution/)；
-- 地面站 GUI 与雷达避障：参考 [`reference-projects/2022-HUST/python_sdk/`](reference-projects/2022-HUST/python_sdk/)。
+- 查阅 [历年电赛参考工程索引](参考工程/README.md)；
+- 机械结构与 3D 打印件：参考 [`参考工程/UAV-2023/UAV_2023-master/MichanicalSolution/`](参考工程/UAV-2023/UAV_2023-master/MichanicalSolution/)；
+- 地面站 GUI 与雷达避障：参考 [`参考工程/2022-HUST/python_sdk/`](参考工程/2022-HUST/python_sdk/)。
 
-### 4. 查阅理论报告与答辩指引（看 `drone-system/docs/`）
+### 4. 查阅理论报告与答辩指引（看 `自研系统/文档/`）
 如果您需要撰写电赛设计报告、参考飞控电路原理图或准备专家答辩：
-- 阅读 [全国电赛 D 题脱敏设计报告](drone-system/docs/EDC-2026-D-Report.md)；
-- 查阅 [专家答辩与现场赛题 FAQ 指南](drone-system/docs/competition_faq.md)；
-- 对照 [各计算板卡硬件引脚与线序手册](drone-system/docs/hardware/README.md)。
+- 阅读 [全国电赛 D 题脱敏设计报告](自研系统/文档/EDC-2026-D-Report.md)；
+- 查阅 [专家答辩与现场赛题 FAQ 指南](自研系统/文档/competition_faq.md)；
+- 对照 [各计算板卡硬件引脚与线序手册](自研系统/文档/hardware/README.md)。
 
 
 ---
@@ -91,7 +91,7 @@ lingxiao-drone/
 1. **编译产物过滤**：本仓库已在 `.gitignore` 中配置过滤 Keil 中间编译产物（`.o`、`.axf`、`.d` 等）及 Python 缓存（`__pycache__`），保持代码库极度轻量整洁。
 2. **大文件说明**：Keil DFP 支持包由于体积限制已通过 `.gitignore` 排除，下载地址详见环境说明文档。
 3. **IMU 固件匹配**：119 版本以上 IMU 固件使用新版控制帧，请务必注意上位机与飞控固件版本协同。
-4. **本仓为完整无人机系统真源**：2026-10-01 起，`rdk-x5-flight-system`（RDK X5 机载工程仓）的独有资产已并入本仓（雷达感知 / T265 看门狗 / 板端视觉硬件 / 历年练兵工程），该仓已退役归档；机载 2026-D 现役代码以 `drone-system/companion-computer/` 为唯一真源。
+4. **本仓为完整无人机系统真源**：2026-10-01 起，`rdk-x5-flight-system`（RDK X5 机载工程仓）的独有资产已并入本仓（雷达感知 / T265 看门狗 / 板端视觉硬件 / 历年练兵工程），该仓已退役归档；机载 2026-D 现役代码以 `自研系统/机载上位机/` 为唯一真源。
 
 ---
 

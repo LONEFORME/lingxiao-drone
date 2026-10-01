@@ -7,7 +7,7 @@
 ## 目录结构
 
 ```text
-ground-vehicle/
+地面小车/
 ├── gateway/                     # 车载通信网关（树莓派 Python 3）
 │   ├── car_gateway.py           #   双串口通信调度与按键事件分发
 │   ├── coordinate_protocol.py   #   世界坐标系统一映射算法

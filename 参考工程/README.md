@@ -7,7 +7,7 @@
 ## 📁 历年参考工程一览
 
 ```
-reference-projects/
+参考工程/
 ├── README.md               # 本索引说明文件
 │
 ├── 2024-NUEDC-D/           # 2024 年全国大学生电子设计竞赛 D 题
@@ -37,4 +37,4 @@ reference-projects/
 
 1. **机械结构设计**：如需 3D 打印件或机架载荷改装，可重点参考 [`UAV-2023/UAV_2023-master/MichanicalSolution/`](UAV-2023/UAV_2023-master/MichanicalSolution/)。
 2. **激光雷达与地面站 GUI**：如需使用 Python 搭建可视化上位机，可重点参考 [`2022-HUST/python_sdk/`](2022-HUST/python_sdk/)。
-3. **自研主方案**：最新的自研实战闭环工程请使用根目录下的 [`drone-system/`](../drone-system/)。
+3. **自研主方案**：最新的自研实战闭环工程请使用根目录下的 [`自研系统/`](../自研系统/)。

@@ -44,7 +44,7 @@ sudo apt update
 sudo apt install -y libxcb-cursor0 libxkbcommon-x11-0 libxcb-xinerama0 libegl1
 ```
 
-`start_ground_station.sh` 和两个 `.desktop` 文件按 N100 的固定目录 `/home/n100/Desktop/26省赛` 编写。开机自启动文件应放到 `~/.config/autostart/ground-station.desktop`。
+`start_ground_station.sh` 和两个 `.desktop` 文件按 N100 的固定目录 `/home/n100/Desktop/26省赛` 编写。开机自启动文件应放到 `~/.config/autostart/地面站.desktop`。
 
 ## 当前串口配置
 

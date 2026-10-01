@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 BASIC = ROOT / "basic"
 SHARED = ROOT / "shared"
-EDGE_VISION = ROOT.parent / "edge-vision"
+EDGE_VISION = ROOT.parent / "边缘视觉"
 
 for p in [ROOT, BASIC, SHARED, EDGE_VISION]:
     p_str = str(p)
