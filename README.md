@@ -106,3 +106,14 @@ lingxiao-drone/
 - **AUV 配套开源仓库**：https://github.com/FDogeLover/AUV
 - **匿名科技官网**：http://www.anotc.com/
 - **GitHub 组织**：https://github.com/LONEFORME
+
+---
+
+## 📜 许可证
+
+本项目采用 **[PolyForm Noncommercial 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0/)** 许可证开源。
+
+> **使用限制**：本项目仅授权**非商业用途**使用（学习、研究、教学与个人项目）。
+> **禁止任何形式的商业使用与倒卖**——包括但不限于：出售或转售本项目/其副本、
+> 将本项目或其衍生作品纳入商业产品或商业服务、以营利为目的的分发。
+> 如需商业授权，请联系作者（lonefasf@qq.com）协商。
