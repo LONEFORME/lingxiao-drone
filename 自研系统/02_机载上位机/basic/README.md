@@ -1,7 +1,7 @@
 # basic — 基本飞行控制器
 
 基于 Intel T265 视觉里程计的最小可飞版本。无 GPS、无视觉识别、无地面站通信，
-是所有扩展版本（`basic_radar`、`competition_2026`、`warehouse_inventory` 等）的共同基础。
+是所有扩展版本（`../competition_2026_d/`、`../../03_机载雷达感知/`（basic_radar 雷达感知）、历年任务归档中的货架盘点等练兵工程）的共同基础。
 
 ---
 
