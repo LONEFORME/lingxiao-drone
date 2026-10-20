@@ -60,7 +60,7 @@
 └── 2024-NUEDC-D / 2022-HUST / UAV-2023
 ```
 
-**硬件链路**：STM32F407 `/dev/ttyS1` ＋ K230 `/dev/ttyS7` ＋ T265 ＋ 蓝牙 `/dev/bt_serial`
+**硬件链路**：STM32F407 `/dev/ttyS6`（默认，可用 `DRONE_FC_PORT` 覆盖）＋ K230 `/dev/ttyS7` ＋ T265 ＋ 蓝牙 `/dev/bt_serial`
 
 ---
 

@@ -8,7 +8,7 @@
 
 | 板卡 / 设备 | 角色与定位 | 关键接口说明 | 对应引脚图 |
 | :--- | :--- | :--- | :--- |
-| **地平线 RDK X5** | 无人机机载决策中枢 | 40-Pin 扩展排针，提供 `/dev/ttyS1`（飞控通信）、`/dev/ttyS7`（K230 视觉通信）、PWM 舵机驱动 | ![RDK X5 Pinout](./rdk_x5_pinout.png) |
+| **地平线 RDK X5** | 无人机机载决策中枢 | 40-Pin 扩展排针，提供 `/dev/ttyS6`（飞控通信，默认，可用 `DRONE_FC_PORT` 覆盖）、`/dev/ttyS7`（K230 视觉通信）、PWM 舵机驱动 | ![RDK X5 Pinout](./rdk_x5_pinout.png) |
 | **树莓派 4B** | 地面小车主控网关 | 40-Pin GPIO，负责 BCM24 发车按键中断、双 USB 蓝牙串口网关、I2C/UART 小车底盘通信 | ![Raspberry Pi 4B Pinout](./raspberry_pi_4b_pinout.png) |
 | **香橙派 5 Max** | 备用机载算力板 / 边缘网关 | 高性能 RK3588 平台，支持 40-Pin 扩展接口 | ![OrangePi 5 Max Pinout](./orangepi_5max_pinout.png) |
 | **香橙派 GPIO 排布** | 备用扩展排针定义 | 详见引脚复用功能表 | ![OrangePi GPIO](./orangepi_gpio.png) |
@@ -22,11 +22,11 @@
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                           地平线 RDK X5 上位机                          │
 │                                                                         │
-│  [Pin 8 (UART2_TX), Pin 10 (UART2_RX)] ──> /dev/ttyS1  ──> 凌霄飞控串口1 │
+│  [Pin 8 (UART2_TX), Pin 10 (UART2_RX)] ──> /dev/ttyS6  ──> 凌霄飞控（默认） │
 │  [Pin 16 (UART7_TX), Pin 18 (UART7_RX)] ──> /dev/ttyS7 ──> 嘉楠 K230串口 │
 │  [USB 3.0 Type-C 端口]                ──> USB 3.0 ──> T265 追踪相机   │
 │  [USB 2.0 / 串口转TTL]                 ──> /dev/ttyUSB0 ─> DL-20 蓝牙串口│
-│  [Pin 33 (PWM) / GPIO]                ──> 投弹舵机 PWM 信号线           │
+│  [Pin 32 (PWM) / GPIO]                ──> 投弹舵机 PWM 信号线           │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -36,6 +36,8 @@
    - 舵机动作瞬时电流可达 1A~2A，必须使用独立 5V 3A UBEC 降压模块供电，严禁直接从 RDK X5 的 5V 排针取电，防止舵机动作引起上位机电压骤降重启。
    - 树莓派 4B 与 RDK X5 均需满足 5V 3A 额定供电。
 3. **信号隔离与波特率匹配**：
-   - 飞控通信链路：波特率 `115200 8N1`；
+   - 飞控通信链路：波特率 `460800 8N1`，默认设备 `/dev/ttyS6`（可用 `DRONE_FC_PORT` 覆盖；部分系统镜像的 UART 编号可能不同，以板端实际枚举为准）；
    - 边缘视觉 K230 链路：波特率 `115200 8N1`；
    - DL-20 无线透传模块：波特率 `115200 8N1`（出厂或固件默认若为 9600，需通过 AT 指令配置为 115200 以保证低延时遥测）。
+
+> 投弹舵机使用 RDK X5 `pwmchip0/pwm0`，物理 **Pin 32**，50 Hz；锁定 180°、释放 0°。以 `自研系统/02_机载上位机/competition_2026_d/Lcode/gpio_servo.py` 与 `config.json` 为准。
